@@ -1,0 +1,38 @@
+# Python environments and generated files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+# Credentials and machine-local configuration
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+# Local data and model exports (documentation remains tracked)
+/data/*
+!/data/README.md
+/artifacts/*
+!/artifacts/README.md
+/uploads/
+/datasets/
+/checkpoints/
+/outputs/
+/tmp/
+*.h5
+*.hdf5
+*.keras
+*.pt
+*.pth
+*.onnx
+*.pkl
+*.joblib
+*.ckpt
+.ipynb_checkpoints/
+Thumbs.db
+.DS_Store

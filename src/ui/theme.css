@@ -1,0 +1,145 @@
+/* Native palette values come from config.toml through styles.py. */
+:root {
+  --research-glass: color-mix(in srgb, var(--research-card) 90%, transparent);
+  --research-secondary: #B8C7D9;
+  --research-muted: #91A4BB;
+  --research-blue: #7AAEFF;
+  --research-amber: #F4B466;
+  --research-success: #70DDB0;
+  --research-warning: var(--research-amber);
+  --research-error: #FF929E;
+  --research-border: rgba(160, 190, 220, .16);
+  --research-border-active: color-mix(in srgb, var(--research-cyan) 40%, transparent);
+  --research-shadow: 0 16px 40px rgba(0, 0, 0, .24);
+  --research-glow: 0 0 24px color-mix(in srgb, var(--research-cyan) 9%, transparent);
+  --research-radius: 16px;
+  --research-control-radius: 10px;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px;
+  --research-motion: 200ms ease;
+}
+
+/* Application shell. Decoration never intercepts input. */
+.st-key-research-shell { position: relative; isolation: isolate; padding: var(--space-4) var(--space-2) 0; color: var(--research-primary); }
+.st-key-research-shell::before {
+  content: ""; position: absolute; inset: -48px -24px 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse at 82% 8%, color-mix(in srgb, var(--research-cyan) 7.5%, transparent), transparent 46%),
+    radial-gradient(ellipse at 2% 64%, color-mix(in srgb, var(--research-amber) 4.5%, transparent), transparent 42%),
+    linear-gradient(color-mix(in srgb, var(--research-blue) 1.8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--research-blue) 1.8%, transparent) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
+  mask-image: linear-gradient(#000 65%, transparent);
+}
+.st-key-research-shell h1 { font-size: clamp(2.5rem, 3.9vw, 3.5rem); letter-spacing: -.045em; line-height: 1.08; text-wrap: balance; padding-bottom: var(--space-4); }
+.st-key-research-shell h2 { letter-spacing: -.025em; }
+.st-key-research-shell p { line-height: 1.65; }
+.research-eyebrow { color: var(--research-cyan); font-size: .75rem; font-weight: 650; letter-spacing: .13em; text-transform: uppercase; margin-bottom: var(--space-3); overflow-wrap: anywhere; }
+.research-description { color: var(--research-secondary); font-size: 1.08rem; max-width: 62ch; }
+.research-toolbar, .research-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-3); color: var(--research-muted); font-size: .8rem; }
+.research-toolbar { margin-bottom: var(--space-6); letter-spacing: .06em; }
+.research-footer { border-top: 1px solid var(--research-border); padding: var(--space-6) 0; margin-top: var(--space-8); }
+.research-footer span { overflow-wrap: anywhere; }
+.research-brand { display: flex; align-items: center; gap: var(--space-3); margin: var(--space-2) 0 var(--space-3); }
+.research-brand-mark { display: grid; place-items: center; width: 36px; height: 36px; flex-shrink: 0; color: var(--research-cyan); border: 1px solid var(--research-border-active); border-radius: var(--research-control-radius); background: color-mix(in srgb, var(--research-cyan) 6%, transparent); font-size: 1.4rem; }
+.research-brand strong { font-size: 1.05rem; letter-spacing: -.025em; }
+.research-project-id { color: var(--research-muted); font-size: .75rem; overflow-wrap: anywhere; line-height: 1.6; }
+.research-sidebar-caption { color: var(--research-muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; margin: var(--space-6) 0 var(--space-3); }
+.st-key-research-project-status { padding: var(--space-4); background: var(--research-glass); border: 1px solid var(--research-border); border-radius: var(--research-radius); }
+
+/* Shared components and truthful state variants. */
+.research-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin: var(--space-2) 0 var(--space-4); }
+.research-chip { display: inline-flex; align-items: center; gap: var(--space-2); width: fit-content; padding: 5px 10px; border: 1px solid var(--research-border); border-radius: 999px; color: var(--research-secondary); background: var(--research-elevated); font-size: .75rem; font-weight: 550; line-height: 1.5; }
+.research-chip--cyan { color: var(--research-cyan); border-color: var(--research-border-active); }
+.research-chip--pending { color: var(--research-amber); border-color: color-mix(in srgb, var(--research-amber) 24%, transparent); }
+.research-chip--success { color: var(--research-success); border-color: color-mix(in srgb, var(--research-success) 24%, transparent); }
+.research-card, .st-key-research-upload, .st-key-research-inspection,
+.st-key-research-pipeline, .st-key-research-results, .st-key-research-methodology,
+.st-key-research-evaluation, .st-key-research-training, .st-key-research-provenance {
+  padding: var(--space-6); background: linear-gradient(135deg, var(--research-glass), var(--research-elevated));
+  border: 1px solid var(--research-border); border-radius: var(--research-radius); box-shadow: var(--research-shadow);
+}
+.research-workflow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); }
+.research-workflow .research-card { transition: transform var(--research-motion), border-color var(--research-motion), box-shadow var(--research-motion); }
+.research-workflow .research-card:hover { transform: translateY(-2px); border-color: var(--research-border-active); box-shadow: var(--research-shadow), var(--research-glow); }
+.research-card h3 { margin: var(--space-4) 0 var(--space-2); font-size: 1.2rem; font-weight: 600; }
+.research-card p { color: var(--research-secondary); margin: 0; font-size: .92rem; }
+.research-step-number { color: var(--research-cyan); font-size: .8rem; font-family: monospace; letter-spacing: .08em; }
+.research-card--pending .research-step-number { color: var(--research-amber); }
+.research-inline-note { color: var(--research-muted); font-size: .85rem; line-height: 1.6; }
+.research-lock { display: inline-block; position: relative; width: 13px; height: 11px; border: 1.5px solid currentColor; border-radius: 3px; margin: 7px 2px 0; flex-shrink: 0; }
+.research-lock::before { content: ""; position: absolute; width: 7px; height: 7px; border: 1.5px solid currentColor; border-bottom: 0; border-radius: 6px 6px 0 0; top: -7px; left: 1.5px; }
+.research-empty { padding: var(--space-6) var(--space-3); text-align: center; border: 1px dashed var(--research-border); border-radius: var(--research-control-radius); background: color-mix(in srgb, var(--research-canvas) 30%, transparent); }
+.research-empty-symbol { color: var(--research-amber); margin-bottom: var(--space-4); }
+.research-empty h3 { font-size: 1.05rem; margin: 0 0 var(--space-2); }
+.research-empty p { color: var(--research-muted); font-size: .88rem; margin: 0; }
+.research-pipeline { list-style: none; margin: 0; padding: 0; }
+.research-pipeline li { position: relative; display: flex; gap: var(--space-4); padding: 0 0 var(--space-6); }
+.research-pipeline li:last-child { padding-bottom: 0; }
+.research-pipeline li:not(:last-child)::after { content: ""; position: absolute; left: 13px; top: 31px; bottom: 6px; border-left: 1px solid var(--research-border); }
+.research-pipeline-node { display: grid; place-items: center; width: 28px; height: 28px; flex-shrink: 0; border: 1px solid var(--research-border); border-radius: 50%; font-size: .72rem; color: var(--research-muted); background: var(--research-canvas); }
+.research-pipeline strong { display: block; font-size: .92rem; font-weight: 550; }
+.research-pipeline small { display: block; color: var(--research-muted); font-size: .8rem; margin-top: 3px; }
+.research-pipeline .is-active .research-pipeline-node { color: var(--research-cyan); border-color: var(--research-border-active); }
+.research-pipeline .is-attention small { color: var(--research-warning); }
+.research-pipeline .is-pending small { color: var(--research-amber); }
+.research-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-3); }
+.research-flow-stage { padding: var(--space-4); border-top: 2px solid var(--research-border-active); background: var(--research-elevated); border-radius: 0 0 var(--research-control-radius) var(--research-control-radius); color: var(--research-secondary); font-size: .88rem; line-height: 1.6; }
+.research-flow-stage span { display: block; color: var(--research-cyan); font-family: monospace; font-size: .72rem; margin-bottom: var(--space-2); }
+
+/* Static decorative geometry, not a visualization of measurements. */
+.research-system { position: relative; min-height: 310px; overflow: hidden; border: 1px solid var(--research-border); border-radius: var(--research-radius); background: radial-gradient(ellipse at center, color-mix(in srgb, var(--research-cyan) 9%, transparent), transparent 65%), var(--research-elevated); }
+.research-system::before { content: ""; position: absolute; inset: 0; background: linear-gradient(color-mix(in srgb, var(--research-blue) 3.5%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--research-blue) 3.5%, transparent) 1px, transparent 1px); background-size: 28px 28px; mask-image: radial-gradient(ellipse, #000, transparent 80%); }
+.research-system-label { position: absolute; left: 22px; top: 20px; font-size: .67rem; color: var(--research-muted); letter-spacing: .14em; }
+.research-system-caption { position: absolute; bottom: 20px; left: 22px; right: 22px; font-size: .73rem; color: var(--research-muted); }
+.research-orbit { position: absolute; left: 50%; top: 48%; width: 220px; height: 220px; transform: translate(-50%, -50%); border: 1px solid color-mix(in srgb, var(--research-blue) 18%, transparent); border-radius: 50%; }
+.research-orbit--inner { width: 150px; height: 150px; border-style: dashed; border-color: color-mix(in srgb, var(--research-cyan) 28%, transparent); }
+.research-core { position: absolute; left: 50%; top: 48%; width: 76px; height: 76px; display: grid; place-items: center; transform: translate(-50%, -50%) rotate(45deg); border: 1px solid var(--research-border-active); border-radius: 18px; background: var(--research-card); box-shadow: 0 0 48px color-mix(in srgb, var(--research-cyan) 10%, transparent); }
+.research-core span { transform: rotate(-45deg); color: var(--research-cyan); font-size: 2rem; }
+.research-node { position: absolute; width: 10px; height: 10px; border: 2px solid var(--research-cyan); background: var(--research-elevated); border-radius: 50%; }
+.research-node--a { top: calc(48% - 115px); left: calc(50% - 5px); }
+.research-node--b { top: calc(48% + 60px); left: calc(50% - 94px); }
+.research-node--c { top: calc(48% + 60px); left: calc(50% + 84px); border-color: var(--research-amber); }
+.research-link { position: absolute; top: 48%; left: 50%; width: 110px; height: 1px; background: linear-gradient(90deg, var(--research-border-active), transparent); transform-origin: left; }
+.research-link--a { transform: rotate(-90deg); }
+.research-link--b { transform: rotate(144deg); }
+.research-link--c { transform: rotate(36deg); }
+
+/* Compatibility adapters: Streamlit 1.64.0. Keyed scopes; no generated classes. */
+.st-key-research-nav [role="radiogroup"] { gap: var(--space-2); }
+.st-key-research-nav [role="radiogroup"] label { margin: 0; padding: var(--space-3); border: 1px solid transparent; border-radius: var(--research-control-radius); transition: background var(--research-motion), border-color var(--research-motion); }
+.st-key-research-nav [role="radiogroup"] label:has(input:checked) { background: color-mix(in srgb, var(--research-cyan) 7%, transparent); border-color: var(--research-border-active); box-shadow: inset 2px 0 var(--research-cyan); }
+.st-key-research-nav [role="radiogroup"] label:hover { background: color-mix(in srgb, var(--research-cyan) 4%, transparent); }
+.st-key-research-shell [data-testid="stCaptionContainer"], .st-key-research-sidebar [data-testid="stCaptionContainer"] { color: var(--research-muted); }
+.st-key-research-upload [data-testid="stFileUploaderDropzone"] { min-height: 150px; border: 1px dashed var(--research-border-active); border-radius: var(--research-control-radius); background: color-mix(in srgb, var(--research-cyan) 3.5%, transparent); transition: border-color var(--research-motion), background var(--research-motion); }
+.st-key-research-upload [data-testid="stFileUploaderDropzone"]:hover { border-color: var(--research-cyan); background: color-mix(in srgb, var(--research-cyan) 6.5%, transparent); }
+.st-key-research-shell button { transition: border-color var(--research-motion), box-shadow var(--research-motion), background var(--research-motion); }
+.st-key-research-shell button:enabled:hover { box-shadow: var(--research-glow); }
+.st-key-research-shell button:disabled { cursor: not-allowed; }
+.st-key-research-shell :focus-visible, .st-key-research-sidebar :focus-visible { outline: 2px solid var(--research-cyan); outline-offset: 4px; }
+.st-key-research-nav label:has(input:focus-visible) { outline: 2px solid var(--research-cyan); outline-offset: 2px; }
+.st-key-research-shell [data-testid="stText"], .st-key-research-shell [data-testid="stMarkdownContainer"] { overflow-wrap: anywhere; }
+@media (max-width: 1099px) {
+  .st-key-research-hero-layout > [data-testid="stLayoutWrapper"] > [data-testid="stHorizontalBlock"],
+  .st-key-research-submission-layout > [data-testid="stLayoutWrapper"] > [data-testid="stHorizontalBlock"] { flex-direction: column; }
+  .st-key-research-hero-layout > [data-testid="stLayoutWrapper"] > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"],
+  .st-key-research-submission-layout > [data-testid="stLayoutWrapper"] > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] { width: 100%; flex: 1 1 auto; min-width: 0; }
+  .research-system { min-height: 280px; }
+  .research-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 699px) {
+  .st-key-research-notes-layout > [data-testid="stLayoutWrapper"] > [data-testid="stHorizontalBlock"] { flex-direction: column; }
+  .st-key-research-notes-layout > [data-testid="stLayoutWrapper"] > [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] { width: 100%; flex: 1 1 auto; min-width: 0; }
+  .st-key-research-shell { padding-inline: 0; }
+  .st-key-research-shell::before { inset-inline: 0; }
+  .st-key-research-shell h1 { font-size: 2.3rem; }
+  .research-workflow, .research-flow { grid-template-columns: 1fr; }
+  .research-card, .st-key-research-upload, .st-key-research-inspection,
+  .st-key-research-pipeline, .st-key-research-results, .st-key-research-methodology,
+  .st-key-research-evaluation, .st-key-research-training, .st-key-research-provenance { padding: var(--space-4); }
+  .st-key-research-upload [data-testid="stFileUploaderDropzone"] { flex-wrap: wrap; gap: var(--space-3); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .st-key-research-shell *, .st-key-research-sidebar * { transition: none !important; animation: none !important; }
+  .research-workflow .research-card:hover { transform: none; }
+}

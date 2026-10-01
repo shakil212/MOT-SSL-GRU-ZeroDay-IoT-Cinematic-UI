@@ -1,0 +1,2 @@
+# Direct runtime dependency; verified with Python 3.14.0 on Windows.
+streamlit==1.64.0
